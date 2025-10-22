@@ -31,13 +31,27 @@ except Exception as e:
 # Calculate and plot the spread
 data['SPREAD'] = data[ticker1] / data[ticker2]
 
+# Calculate the 200 day spread rolling average manually
+spread_values = list(data['SPREAD'])
+rolling_average = []
+
+for i in range(len(spread_values)):
+    if i < 199:
+        current_window = spread_values[:i+1]
+    else:
+        current_window = spread_values[i-199:i+1]
+    rolling_average.append(sum(current_window) / len(current_window))
+
+data['ROLLING_AVERAGE'] = rolling_average
+
 # Print head and save plot
 print("Data downloaded and spread calculated successfully:")
 print(data.head())
 
 # Plot the spread over time
 plt.figure(figsize=(10, 6))
-data['SPREAD'].plot()
+data['SPREAD'].plot(label='Spread', color='blue', alpha=0.7)
+data['ROLLING_AVERAGE'].plot(label='200 Day Rolling Average', color='green', linestyle='--')
 plt.title(f"{ticker1} / {ticker2} Price Ratio (Spread)")
 plt.axhline(data['SPREAD'].mean(), color='red', linestyle='--', label='Spread Mean')
 plt.legend()
