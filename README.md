@@ -13,8 +13,8 @@ The goal is to identify two co-integrated stocks and trade on the divergence and
 * **matplotlib**
 
 ### Project Plan / To-Do
-- [ ] **Setup:** Initial project setup, virtual env, and GitHub repo.
-- [ ] **Data Retrieval:** Download historical price data.
+- [x] **Setup:** Initial project setup, virtual env, and GitHub repo.
+- [x] **Data Retrieval:** Download historical price data.
 - [ ] **Statistical Testing:** Use `statsmodels` to test for co-integration.
 - [ ] **Signal Generation:** Calculate z-score of the spread to generate trade signals.
 - [ ] **Backtesting Engine:** Simulate trades and calculate P&L.
